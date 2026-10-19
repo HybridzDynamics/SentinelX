@@ -1,0 +1,262 @@
+{
+  "description": "Synthetic authentication events for SentinelX Module 01. All addresses are documentation ranges (RFC 5737). Timestamps are UTC.",
+  "scenarios": [
+    "normal successful logins",
+    "isolated failed logins below threshold",
+    "repeated failures from one source IP (AUTH-001)",
+    "failures spread outside the 5-minute window",
+    "failed attempts against multiple usernames (AUTH-002)",
+    "successful login after repeated failures (AUTH-003)",
+    "four failures in-window (below AUTH-001 threshold)"
+  ],
+  "events": [
+    {
+      "event_id": "evt-normal-001",
+      "timestamp": "2026-03-15T10:00:00Z",
+      "event_type": "authentication",
+      "username": "alice",
+      "source_ip": "192.0.2.10",
+      "action": "login",
+      "status": "success",
+      "hostname": "workstation-alice"
+    },
+    {
+      "event_id": "evt-normal-002",
+      "timestamp": "2026-03-15T10:05:00Z",
+      "event_type": "authentication",
+      "username": "bob",
+      "source_ip": "192.0.2.11",
+      "action": "login",
+      "status": "success",
+      "hostname": "workstation-bob"
+    },
+    {
+      "event_id": "evt-isolated-001",
+      "timestamp": "2026-03-15T10:10:00Z",
+      "event_type": "authentication",
+      "username": "carol",
+      "source_ip": "198.51.100.10",
+      "action": "login",
+      "status": "failure",
+      "hostname": "laptop-carol"
+    },
+    {
+      "event_id": "evt-isolated-002",
+      "timestamp": "2026-03-15T10:40:00Z",
+      "event_type": "authentication",
+      "username": "carol",
+      "source_ip": "198.51.100.10",
+      "action": "login",
+      "status": "failure",
+      "hostname": "laptop-carol"
+    },
+    {
+      "event_id": "evt-burst-001",
+      "timestamp": "2026-03-15T11:00:00Z",
+      "event_type": "authentication",
+      "username": "dave",
+      "source_ip": "203.0.113.50",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-burst-002",
+      "timestamp": "2026-03-15T11:00:20Z",
+      "event_type": "authentication",
+      "username": "dave",
+      "source_ip": "203.0.113.50",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-burst-003",
+      "timestamp": "2026-03-15T11:00:40Z",
+      "event_type": "authentication",
+      "username": "dave",
+      "source_ip": "203.0.113.50",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-burst-004",
+      "timestamp": "2026-03-15T11:01:00Z",
+      "event_type": "authentication",
+      "username": "dave",
+      "source_ip": "203.0.113.50",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-burst-005",
+      "timestamp": "2026-03-15T11:01:20Z",
+      "event_type": "authentication",
+      "username": "dave",
+      "source_ip": "203.0.113.50",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-burst-outside-window",
+      "timestamp": "2026-03-15T11:20:00Z",
+      "event_type": "authentication",
+      "username": "dave",
+      "source_ip": "203.0.113.50",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-spread-001",
+      "timestamp": "2026-03-15T12:00:00Z",
+      "event_type": "authentication",
+      "username": "erin",
+      "source_ip": "203.0.113.51",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-spread-002",
+      "timestamp": "2026-03-15T12:06:00Z",
+      "event_type": "authentication",
+      "username": "erin",
+      "source_ip": "203.0.113.51",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-spread-003",
+      "timestamp": "2026-03-15T12:12:00Z",
+      "event_type": "authentication",
+      "username": "erin",
+      "source_ip": "203.0.113.51",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-spread-004",
+      "timestamp": "2026-03-15T12:18:00Z",
+      "event_type": "authentication",
+      "username": "erin",
+      "source_ip": "203.0.113.51",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-spray-001",
+      "timestamp": "2026-03-15T13:00:00Z",
+      "event_type": "authentication",
+      "username": "eve",
+      "source_ip": "203.0.113.60",
+      "action": "login",
+      "status": "failed"
+    },
+    {
+      "event_id": "evt-spray-002",
+      "timestamp": "2026-03-15T13:00:30Z",
+      "event_type": "authentication",
+      "username": "frank",
+      "source_ip": "203.0.113.60",
+      "action": "login",
+      "status": "Denied"
+    },
+    {
+      "event_id": "evt-spray-003",
+      "timestamp": "2026-03-15T13:01:00Z",
+      "event_type": "authentication",
+      "username": "grace",
+      "source_ip": "203.0.113.60",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-follow-001",
+      "timestamp": "2026-03-15T14:00:00Z",
+      "event_type": "authentication",
+      "username": "heidi",
+      "source_ip": "203.0.113.70",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-follow-002",
+      "timestamp": "2026-03-15T14:00:15Z",
+      "event_type": "authentication",
+      "username": "heidi",
+      "source_ip": "203.0.113.70",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-follow-003",
+      "timestamp": "2026-03-15T14:00:30Z",
+      "event_type": "authentication",
+      "username": "heidi",
+      "source_ip": "203.0.113.70",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-follow-004",
+      "timestamp": "2026-03-15T14:00:45Z",
+      "event_type": "authentication",
+      "username": "heidi",
+      "source_ip": "203.0.113.70",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-follow-005",
+      "timestamp": "2026-03-15T14:01:00Z",
+      "event_type": "authentication",
+      "username": "heidi",
+      "source_ip": "203.0.113.70",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-follow-006",
+      "timestamp": "2026-03-15T14:01:10Z",
+      "event_type": "authentication",
+      "username": "heidi",
+      "source_ip": "203.0.113.70",
+      "action": "login",
+      "status": "success",
+      "hostname": "unknown-host"
+    },
+    {
+      "event_id": "evt-below-001",
+      "timestamp": "2026-03-15T15:00:00Z",
+      "event_type": "authentication",
+      "username": "ivan",
+      "source_ip": "203.0.113.80",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-below-002",
+      "timestamp": "2026-03-15T15:01:00Z",
+      "event_type": "authentication",
+      "username": "ivan",
+      "source_ip": "203.0.113.80",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-below-003",
+      "timestamp": "2026-03-15T15:02:00Z",
+      "event_type": "authentication",
+      "username": "ivan",
+      "source_ip": "203.0.113.80",
+      "action": "login",
+      "status": "failure"
+    },
+    {
+      "event_id": "evt-below-004",
+      "timestamp": "2026-03-15T15:03:00Z",
+      "event_type": "authentication",
+      "username": "ivan",
+      "source_ip": "203.0.113.80",
+      "action": "login",
+      "status": "failure"
+    }
+  ]
+}
